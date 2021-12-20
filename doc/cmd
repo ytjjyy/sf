@@ -1,0 +1,7 @@
+psql -U postgres daifu < /extra_disk/git/team/doc/db.sql
+
+
+>/tmp/log
+nohup /extra_disk/git/team/cmd/main >>/tmp/log &
+
+git clone https://github.com/ytjjyy/team
