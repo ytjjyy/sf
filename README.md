@@ -8,6 +8,8 @@
 	4. 支持越南：TCB,ACB,VTB,Bidv,TBP
 	5. 支持云手机（虚拟机）
 	6. 售后服务请联系 Telegram：@live0086
+# 视频效果
+https://user-images.githubusercontent.com/12911640/147103583-061309dc-460f-4fbc-96f2-a561e710f8c7.MOV
 # 转账App截图
 ![image](https://github.com/1752325542/daifu/blob/master/doc/1x.png)
 ![image](https://github.com/1752325542/daifu/blob/master/doc/2x.png)
