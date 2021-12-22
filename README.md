@@ -39,8 +39,8 @@ https://user-images.githubusercontent.com/12911640/147103583-061309dc-460f-4fbc-
 	3.	安装Mysql数据库
 		yum -y install mysql-server
 		service mysqld restart
-		数据库备分见：$path/daifu/doc/db.sql
-	4.	运行$path/daifu/cmd/main数据服务,及可以正常运行,注$path为环境变量
+		数据库备分见：$path/sf/doc/db.sql
+	4.	运行$path/sf/cmd/main数据服务,及可以正常运行,注$path为环境变量
 	5.	管理员账号和密码都是：admin，系统中有：管理员、代理、码商(支持三级码商码结算)、商户、运营5种角色，跟据需要自行创建
 	
 
@@ -55,7 +55,7 @@ https://user-images.githubusercontent.com/12911640/147103583-061309dc-460f-4fbc-
 	7.	挂码系统: 支持，银联，微信，支付宝二维码上传,支持微信和支付宝回调。
 	8.	商户结算: 计算收款交易中商户的收益,根据清算结果，将资金划拨至商户对应的资金帐户中,支持三级代理商户结算。
 	9.  手动转账:手转账提交转账凭证，后端审核。
-	10.  卡商:支持银行卡对银行卡自动转账,过程全自动化，无需申请银行API接口,自动转账视频演示见（doc/demo.mp4）
+	10.  卡商:支持银行卡对银行卡自动转账,过程全自动化，无需申请银行API接口
 	11.  PatTM:支持印度paytm自动转账，自动收款回调
   
   
