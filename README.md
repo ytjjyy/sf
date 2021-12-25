@@ -17,6 +17,9 @@
 	4.余额查询接口
 	5.打款通知回调接口
 # 视频效果
+国内银行短信回调:
+
+https://user-images.githubusercontent.com/12911640/147375941-6f0c8c70-1a0f-4278-bce6-69b4efacf5b6.MOV
 越南TCB:
 
 https://user-images.githubusercontent.com/12911640/147103583-061309dc-460f-4fbc-96f2-a561e710f8c7.MOV
