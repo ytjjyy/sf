@@ -16,6 +16,22 @@
 	3.交易查询接口
 	4.余额查询接口
 	5.打款通知回调接口
+# 系统安装
+	1. CentOS8.0以上系统
+	2.	安装Nginx,
+		yum install -y nginx  
+		将站指向程序中的$path/daifu/web目录
+	3.	安装Mysql数据库
+		yum -y install mysql-server
+		service mysqld restart
+		数据库备分见：$path/sf/doc/db.sql
+	4.	运行$path/sf/cmd/main数据服务,及可以正常运行,注$path为环境变量
+	5.	管理员账号和密码都是：admin，系统中有：管理员、代理、码商(支持三级码商码结算)、商户、运营5种角色，跟据需要自行创建
+  
+# 开发技术
+	1.	Golang+CentOS+Mysql+Nginx+Vue
+	2. 	商户API对接文档见doc/dev.html
+	3. 	平台数据采用RSA2加密传输
 # 视频效果
 国内银行短信回调:
 
@@ -43,21 +59,3 @@ https://user-images.githubusercontent.com/12911640/147103583-061309dc-460f-4fbc-
 ![image](https://github.com/1752325542/daifu/blob/master/doc/10001.jpg)
 ![image](https://github.com/1752325542/daifu/blob/master/doc/10002.jpg)
 ![image](https://github.com/1752325542/daifu/blob/master/doc/10003.jpg)
-
-
-# 系统安装
-	1. CentOS8.0以上系统
-	2.	安装Nginx,
-		yum install -y nginx  
-		将站指向程序中的$path/daifu/web目录
-	3.	安装Mysql数据库
-		yum -y install mysql-server
-		service mysqld restart
-		数据库备分见：$path/sf/doc/db.sql
-	4.	运行$path/sf/cmd/main数据服务,及可以正常运行,注$path为环境变量
-	5.	管理员账号和密码都是：admin，系统中有：管理员、代理、码商(支持三级码商码结算)、商户、运营5种角色，跟据需要自行创建
-  
-# 开发技术
-	1.	Golang+CentOS+Mysql+Nginx+Vue
-	2. 	商户API对接文档见doc/dev.html
-	3. 	平台数据采用RSA2加密传输
