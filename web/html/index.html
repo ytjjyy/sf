@@ -227,7 +227,7 @@
         }
     </style>
 <style> @-webkit-keyframes loadingoverlay_animation__rotate_right { to { -webkit-transform : rotate(360deg); transform : rotate(360deg); } } @keyframes loadingoverlay_animation__rotate_right { to { -webkit-transform : rotate(360deg); transform : rotate(360deg); } } @-webkit-keyframes loadingoverlay_animation__rotate_left { to { -webkit-transform : rotate(-360deg); transform : rotate(-360deg); } } @keyframes loadingoverlay_animation__rotate_left { to { -webkit-transform : rotate(-360deg); transform : rotate(-360deg); } } @-webkit-keyframes loadingoverlay_animation__fadein { 0% { opacity   : 0; -webkit-transform : scale(0.1, 0.1); transform : scale(0.1, 0.1); } 50% { opacity   : 1; } 100% { opacity   : 0; -webkit-transform : scale(1, 1); transform : scale(1, 1); } } @keyframes loadingoverlay_animation__fadein { 0% { opacity   : 0; -webkit-transform : scale(0.1, 0.1); transform : scale(0.1, 0.1); } 50% { opacity   : 1; } 100% { opacity   : 0; -webkit-transform : scale(1, 1); transform : scale(1, 1); } } @-webkit-keyframes loadingoverlay_animation__pulse { 0% { -webkit-transform : scale(0, 0); transform : scale(0, 0); } 50% { -webkit-transform : scale(1, 1); transform : scale(1, 1); } 100% { -webkit-transform : scale(0, 0); transform : scale(0, 0); } } @keyframes loadingoverlay_animation__pulse { 0% { -webkit-transform : scale(0, 0); transform : scale(0, 0); } 50% { -webkit-transform : scale(1, 1); transform : scale(1, 1); } 100% { -webkit-transform : scale(0, 0); transform : scale(0, 0); } } </style><style type="text/css" abt="234"></style></head>
-<body style="">
+<body >
 
 <!--mtype_id=6    pc-->
 <div id="payBox" style="display: none;">
@@ -311,8 +311,8 @@
     </div> -->
     <div class="reminder">付款须知：<br />1.请按页面显示的金额转账，否则无法到账<br />2.转账完成后，没有到账或者延迟，请立即联系客服</div>
     <div class="countdown" id="time-panel">
-        <strong id="minute">6分</strong>
-        <strong id="second">26秒</strong>
+        <strong id="minute">15分</strong>
+        <strong id="second">0秒</strong>
     </div>
     
     
@@ -389,7 +389,7 @@ function getQueryString(name) {
 	}
 
 
-    var timeout = 480
+    var timeout = 900
     var timer = null
     function CountDown() {
         if (timeout >= 0) {
@@ -401,67 +401,34 @@ function getQueryString(name) {
         } else {
             clearInterval(timer);
             $(".tips").css({"font-size": "16px", "font-weight": "bold"}).text("该订单已超时，请重新提交获取最新付款码。如有疑问请联系平台客服");
-            layer.alert('该订单已超时，请重新提交获取最新付款码。如有疑问请联系平台客服');
+            layer.alert('该订单已超时，请重新提交。如有疑问请联系平台客服');
         }
     }
 
-    // 支付类型：1是微信转卡 2是支付宝转卡
-    function configPayType(payType) {
-        if (payType == 1) {
-            $('.alipayhelp').hide()
-            $('.wechathelp').show()
-            if (isMobile()){
-                $('.opreation a').attr('href','weixin://')
-            } else {
-                $('.opreation a').attr('href','https://www.weixin.com')
-            }
-            $('.opreation a').text('点击启动微信')
-            $('.logo img').attr('src', '/static/images/wechat_to_bank.jpg')
-            $('.reminder').text('点击复制姓名，复制卡号到微信转账成功后即可自动上分，如10钟不到账请联系客服')
-        }else if (payType == 2) {
-            $('.alipayhelp').show()
-            $('.wechathelp').hide()
-        } else if (payType == 6) {
-            $('.helpbtn').hide()
-            $('.opreation').hide()
-            $('.logo img').attr('src', '/static/images/bank_to_bank.jpg')
-            // $('.reminder').text('点击复制姓名，复制卡号到支付宝转账成功后即可自动上分，如10钟不到账请联系客服')
-        }
-    }
-
-
-
-    function showHelp(thisIndex){
     
 
 
 
-        $("#CourseBox").fadeIn();
-        $("#CourseBox .course").eq(thisIndex).show().siblings().hide();
-        var swiper = new Swiper('.swiper-container', {
-            autoplay: true,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-    }
-
     $(function() {
-        //updateBillStatus()
+
+
         getPageInfo()
+
+
+
+
+
+
 
         function getPageInfo() {
           
-            $('#payBox').hide() 
-            $('.body').show()
-           // configPayType(2)        
+         
             $.LoadingOverlay('show')
 
         
-              //  comm.post({url:"http://192.168.3.189:8080/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
+              comm.post({url:"http://192.168.3.189:8080/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
 
-                comm.post({url:"/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
+                //  comm.post({url:"/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
 
                     
 
@@ -492,22 +459,25 @@ function getQueryString(name) {
                     
 
 
-                    //$('#order_id').val(data.num)
-
+                    
                     $('.order-id').text(data.out_trade_no)
 
-                    // if (payType == 2){
-                    //     $('.opreation a').attr('href',`alipays://platformapi/startapp?appId=09999988&actionType=toCard&sourceId=bill&cardNo=${data.bankno}&bankMark=${data.banknick}&bankName=${data.bankname}&bankAccount=${data.cardname}&money=${data.amount}&amount=${data.amount}&orderSource=from`)
-                    // }
+           
+                    if(data.status==1){
+                        $('.body').show()
+                            timer = setInterval("CountDown()", 1000);
 
-                    //付款倒计时
-                   // timeout = data.expire
-                    timer = setInterval("CountDown()", 1000);
-                } else {
-                    // if (res.info) {
-                    //     alert(res.info)
-                    // }
-                }
+                        }else if(data.status==4){
+                            $('.body').hide()
+                            layer.alert('该订单已超时，请重新提交订单。如有疑问请联系平台客服');
+                        }else{
+                            $('.body').hide()
+                            layer.alert('该订单已完成，如有疑问请联系平台客服');
+                        }
+                   
+                    
+
+                } 
 
 
 
@@ -533,44 +503,8 @@ function getQueryString(name) {
         });
     });
 
-    //付款帮助
-    $(".helpbtn button").click(function () {
-        var thisIndex = $(this).index();
+ 
 
-        thisIndex=1
-
-        $("#CourseBox").fadeIn();
-        $("#CourseBox .course").eq(thisIndex).show().siblings().hide();
-        var swiper = new Swiper('.swiper-container', {
-            autoplay: true,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-    });
-    $("body").delegate(".course .closebtn", "click", function () {
-        $("#CourseBox").fadeOut();
-    })
-
-
-    function getQueryString(paramName) {
-        var paramValue = "", isFound = !1;
-        if (this.location.search.indexOf("?") == 0 && this.location.search.indexOf("=") > 1) {
-            arrSource = unescape(this.location.search).substring(1, this.location.search.length).split("&"), i = 0;
-            while (i < arrSource.length && !isFound) arrSource[i].indexOf("=") > 0 && arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase() && (paramValue = arrSource[i].split("=")[1], isFound = !0), i++
-        }
-        return paramValue == "" && (paramValue = null), paramValue
-    }
-
-    function getQueryStringWithUrl(url,paramName) {
-        var paramValue = "", isFound = !1;
-        if (url.indexOf("?") == 0 && url.indexOf("=") > 1) {
-            arrSource = unescape(url).substring(1, url.length).split("&"), i = 0;
-            while (i < arrSource.length && !isFound) arrSource[i].indexOf("=") > 0 && arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase() && (paramValue = arrSource[i].split("=")[1], isFound = !0), i++
-        }
-        return paramValue == "" && (paramValue = null), paramValue
-    }
 
     /**
      * 判断是否是手机
