@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
-    <title>三方支付收银台</title>
+    <title>收银台</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <meta http-equiv="Content-Language" content="zh-cn">
@@ -255,7 +255,7 @@
     <div class="logo">
         <img src="./index_files/ali_to_bank.jpg">
     </div>
-    <div class="tips" style="font-size: 16px; font-weight: bold; line-height:2;">转账金额和银行卡号必须与订单完全一致,否则无法充值！</div>
+    <div class="tips" style="font-size: 16px; font-weight: bold; line-height:2;">转账金额和银行卡姓名必须与订单完全一致,否则无法充值！</div>
     <div class="information">
         <ul>
      
@@ -400,7 +400,7 @@ function getQueryString(name) {
             timeout--;
         } else {
             clearInterval(timer);
-            $(".tips").css({"font-size": "16px", "font-weight": "bold"}).text("该订单已超时，请重新提交获取最新付款码。如有疑问请联系平台客服");
+            //$(".tips").css({"font-size": "16px", "font-weight": "bold"}).text("该订单已超时，请重新提交获取最新付款码。如有疑问请联系平台客服");
             layer.alert('该订单已超时，请重新提交。如有疑问请联系平台客服');
         }
     }
@@ -412,82 +412,81 @@ function getQueryString(name) {
     $(function() {
 
 
-        getPageInfo()
+        $.LoadingOverlay('show')
 
+        var url="/pub/share/query"
 
-
-
-
-
-
-        function getPageInfo() {
-          
-         
-            $.LoadingOverlay('show')
-
+       // url="http://192.168.3.189:8080/pub/share/query"
         
-              comm.post({url:"http://192.168.3.189:8080/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
 
-                //  comm.post({url:"/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
+   comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
 
-                    
+      
 
-                $.LoadingOverlay('hide')
-                if (parseInt(data.code) == 0) {
+  $.LoadingOverlay('hide')
+  if (parseInt(data.code) == 0) {
 
-                    data=data.data
-                    
+      data=data.data
+      
 
-                    $('#money').text(data.amount.toFixed(2))
-                    $('#name').text(data.receive_name)
-                    $('#cardNo').text(data.receive_account)
-                    $('#bankName').text(data.receive_bank)
-                    $('#orderNo').text(data.out_trade_no)
-                    $('#pay_name').text(data.pay_name)
-                    
+      $('#money').text(data.amount.toFixed(2))
+      $('#name').text(data.receive_name)
+      $('#cardNo').text(data.receive_account)
+      $('#bankName').text(data.receive_bank)
+      $('#orderNo').text(data.out_trade_no)
+      $('#pay_name').text(data.pay_name)
+      
 
-                    $('#createdat').text(data.created_at)
+      $('#createdat').text(data.created_at)
 
-                    $('#moneyCopy').attr('data-clipboard-text',data.amount.toFixed(2))
-                    $('#nameCopy').attr('data-clipboard-text',data.receive_name)
-                    $('#cardNoCopy').attr('data-clipboard-text',data.receive_account)
-                    $('#bankNameCopy').attr('data-clipboard-text',data.receive_bank)
-                    $('#orderCopy').attr('data-clipboard-text',data.out_trade_no)
-                    $('#orderTimeCopy').attr('data-clipboard-text',data.created_at)
-                    $('#pay_nameCopy').attr('data-clipboard-text',data.pay_name)
-                    
-                    
+      $('#moneyCopy').attr('data-clipboard-text',data.amount.toFixed(2))
+      $('#nameCopy').attr('data-clipboard-text',data.receive_name)
+      $('#cardNoCopy').attr('data-clipboard-text',data.receive_account)
+      $('#bankNameCopy').attr('data-clipboard-text',data.receive_bank)
+      $('#orderCopy').attr('data-clipboard-text',data.out_trade_no)
+      $('#orderTimeCopy').attr('data-clipboard-text',data.created_at)
+      $('#pay_nameCopy').attr('data-clipboard-text',data.pay_name)
+      $('.order-id').text(data.out_trade_no)
 
 
-                    
-                    $('.order-id').text(data.out_trade_no)
+      if(data.status==1){
+          $('.body').show()
+              timer = setInterval("CountDown()", 1000);
 
-           
-                    if(data.status==1){
-                        $('.body').show()
-                            timer = setInterval("CountDown()", 1000);
+             has=setInterval(function(){
 
-                        }else if(data.status==4){
-                            $('.body').hide()
-                            layer.alert('该订单已超时，请重新提交订单。如有疑问请联系平台客服');
-                        }else{
-                            $('.body').hide()
-                            layer.alert('该订单已完成，如有疑问请联系平台客服');
-                        }
-                   
-                    
 
-                } 
+                comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(call){
+
+                    if(call.status==5){
+                        clearInterval(has);
+                layer.alert('该订单已处理，如有疑问请联系平台客服');
+                    }
+                }})
+
+
+             }, 5000);
+
+
+
+
+          }else if(data.status==4){
+              $('.body').hide()
+              layer.alert('该订单已超时，请重新提交订单。如有疑问请联系平台客服');
+          }else if(data.status==5){
+              $('.body').hide()
+              layer.alert('该订单已支付成功，如有疑问请联系平台客服');
+          }else{
+              $('.body').hide()
+              layer.alert('该订单已处理，如有疑问请联系平台客服');
+          }
+  } 
 
 
 
 
 
 }})
-   
-
-
-        }
 
     })
 
