@@ -61,7 +61,7 @@
 </script><div class="jquery-modal blocker current"><div class="modal" id="modal" style="display: inline-block;">
 <h3>网关支付</h3>
 
-<label class="modalLabel">金额：<label  style="cursor: pointer;color: red;" id="money" >100.00</label></label>
+<label class="modalLabel">金额：<label  style="cursor: pointer;color: red;" id="money" >0.00</label></label>
 
 <label class="modalLabel">单号：<label  style="cursor: pointer;color: green;" id="out_trade_no" ></label></label>
 
@@ -73,9 +73,9 @@
 
 <div class="payType" id="bankPay">
 
-<input id="bankPayNumber" placeholder="请输入银行卡户主姓名" type="text">
-<div class="alert" style="margin-bottom:5px;">·不要使用微信、支付宝或云闪付转账!</div>
-<div class="alert">·必须输入您转账银行卡的户主姓名，没有姓名无法到账</div> 
+<input id="bankPayNumber" placeholder="请输入姓名" type="text">
+<!-- <div class="alert" style="margin-bottom:5px;">·不要使用微信、支付宝或云闪付转账!</div> -->
+<div class="alert">·必须输入您转账姓名，没有姓名无法到账</div> 
 </div>
 <button onclick="postFunc()" type="button">提交</button>
 
@@ -90,6 +90,7 @@
 
 
 var out_trade_no='';
+var channel_id=0;
 
 function getQueryString(name) {
 	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
@@ -115,7 +116,7 @@ function getQueryString(name) {
 
       if(val==""||val==undefined){
 
-      alertMessage("银行卡户主姓名必需填写");
+      alertMessage("姓名必需填写");
 
       return 
       }
@@ -125,8 +126,13 @@ function getQueryString(name) {
   
 
         if(data.code==0){
+          if(channel_id==5){
+            window.location.href=`/alipay/index.html?out_trade_no=${out_trade_no}`
+          }else{
+            window.location.href=`/html/index.html?out_trade_no=${out_trade_no}`
+          }
 
-         window.location.href=`/html/index.html?out_trade_no=${out_trade_no}`
+
 
         }else{
           alertMessage(data.message);
@@ -168,7 +174,7 @@ function getQueryString(name) {
     }
 
 
-    http://192.168.3.189:8080
+//http://192.168.3.189:8080
     comm.post({url:"/pub/share/query",data:{out_trade_no:out_trade_no},callback:function(data){
 
 
@@ -177,6 +183,7 @@ function getQueryString(name) {
 
             data=data.data
             
+            channel_id=data.channel_id
 
             $('#money').text(data.amount.toFixed(2))
             
