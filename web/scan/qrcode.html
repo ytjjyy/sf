@@ -74,15 +74,19 @@
                 </div>
 
                 <div class="time-item" id="msg">
-                    <h1 style="color: red;">请按照以上金额进行付款，超时付款，否则无法到账</h1>
+                    <h1 style="color: red;">请按照以上金额进行付款，否则无法到账</h1>
                 </div>
                 <div class="time-item" id="msg">
-                    <h1 style="color: red;">请不要重复付款，视频教程如下</h1>
+                    <h1 style="color: red;">请不要重复付款，超时付款，否则无法到账</h1>
                 </div>
                 <div class="qrcode-img-wrapper" data-role="qrPayImgWrapper">
                     <div data-role="qrPayImg" class="qrcode-img-area">
                         <div style="position: relative;display: inline-block;">
-                         <video autoplay="autoplay" loop muted width="400" controls="controls"  src="v.mp4"></video>
+                            <div id="show_qrcode" width="210" height="210" style="display: block;" title="CHANGECODE_SQ081011780364916951645408384">
+                                <div id="imgLogo" class="logo logo-alipay" style="margin: 86px;display: none;"></div>
+                                <canvas width="210" height="210" style="display: none;"></canvas>
+                            <canvas width="210" height="210" style="display: none;"></canvas><img src="data:image/png;base64,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" style="display: block;"></div>
+                            <div class="expired hidden"></div>
                         </div>
                     </div>
                 </div>
@@ -107,8 +111,6 @@
                         clipboard_copy.on('success', function (e) { layer.msg('成功复制订单编号:'+ e.text+',长按粘贴即可'); });
                     </script>
                 </div>
-
-                <button onclick="doKey()" type="button" class="btn btn-pay btn-alipay">点击提交红包口令</button>
                 <!-- <button id="btnPay" type="button" class="btn btn-pay btn-alipay">支付宝支付</button> -->
 
                 <!----> <div class="tip">
@@ -156,11 +158,7 @@
         <!--注意下面加载顺序 顺序错乱会影响业务-->
         <script>
 var url="/pub/share/query"
-var nameUrl="/pub/share/name"
-
-// url="http://192.168.3.189:8080/pub/share/query"
-// nameUrl="http://192.168.3.189:8080/pub/share/name"
-
+url="http://192.168.3.189:8080/pub/share/query"
 
 function getQueryString(name) {
 	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
@@ -181,21 +179,7 @@ function getQueryString(name) {
             comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
 
                 
-                
-
                 data=data.data
-
-                if(data.status==4){
-                    $('.body').show()
-                    layer.alert('该订单已处理，如有疑问请联系平台客服');
-                }
-
-                if(data.status==1){
-                    doKey()
-                }
-         
-               
-
                 $('#money').html("￥"+data.amount.toFixed(2))
 
             }})
@@ -301,18 +285,16 @@ function getQueryString(name) {
                         $("#btnPay").on("click", function () {
                             window.location = "alipays://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=" + encodeURIComponent(payUrl);
                         });
-                
-                });
-
-
-                function doKey(){
-                    layer.prompt({
+                    layer.ready(function () {
+                        var mark = "";
+                        if (!mark) {
+                            layer.prompt({
                                 formtype: 0,
-                                shadeClose: true,
+                                shadeClose: false,
                                 area: ['500px', '150px'],
                                 placeholder: '请粘贴支付宝红包口令',
                                 title: '请粘贴支付宝红包口令',
-                                closeBtn: true,
+                                closeBtn: false,
                                 btn: ['确认'],
                                 btnAlign: 'c',
                                 yes: function (index, layero) {
@@ -323,25 +305,16 @@ function getQueryString(name) {
                                         return;
                                     }
 
-
-                                    comm.post({url:nameUrl,data:{name:kouling,out_trade_no:getQueryString('out_trade_no')},callback:function(data){
-
-  
-                                        layer.close(index);//关闭弹窗
+                                    layer.close(index);//关闭弹窗
                                     layer.alert("红包口令更新成功订单核实中,请稍后...", function (index) {
                                                 layer.close(index);//关闭弹窗
                                             });
-                                    
 
-                                        }})
-
-
-                                    //console.log(kouling)
-                           
-
+                                           // layer.msg(result.Message); 
                                  
                                 }
                             });
-                }
-
+                        }
+                    });
+                });
         </script>
