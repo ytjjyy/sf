@@ -127,7 +127,8 @@ function getQueryString(name) {
 
         if(data.code==0){
           if(channel_id==4){
-            window.location.href=`/money/index.html?out_trade_no=${out_trade_no}`
+            window.location.href=`/code/index.html?out_trade_no=${out_trade_no}`
+            //window.location.href=`/money/index.html?out_trade_no=${out_trade_no}`
           }else  if(channel_id==5){
             window.location.href=`/alipay/index.html?out_trade_no=${out_trade_no}`
           }else{

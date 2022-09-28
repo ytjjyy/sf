@@ -1,0 +1,662 @@
+
+<!-- saved from url=(0075)http://94.103.5.50:8080/api/Pay/PayByUI?id=2c2c500eb7bb403f8dd531881b6d3c00 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="./index_files/vue@2.js"></script><style type="text/css" abt="234"></style>
+    <script src="./index_files/vue-qrcode.min.js"></script>
+    <script>Vue.component(VueQrcode.name, VueQrcode);</script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="./index_files/index.css">
+    <!-- 引入组件库 -->
+    <script src="./index_files/index.js"></script>
+    <script type="text/javascript" src="./index_files/jquery"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>订单详情页面</title>
+    <style type="text/css">
+        html {
+            font-size: 62.5%;
+            font-family: 'helvetica neue', tahoma, arial, 'hiragino sans gb', 'microsoft yahei', 'Simsun', sans-serif
+        }
+        
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, hr {
+            margin: 0;
+            padding: 0px 2px;
+        }
+        
+        body {
+            line-height: 1.333;
+            font-size: 12px
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-family: arial, 'hiragino sans gb', 'microsoft yahei', 'Simsun', sans-serif
+        }
+        
+        input, textarea, select, button {
+            font-size: 12px;
+            font-weight: normal
+        }
+            input[type="button"], input[type="submit"], select, button {
+                cursor: pointer
+            }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+        
+        address, caption, cite, code, dfn, em, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+        
+        li {
+            list-style: none
+        }
+        
+        caption, th {
+            text-align: left
+        }
+        
+        q:before, q:after {
+            content: ''
+        }
+        
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+        
+        sup {
+            vertical-align: text-top
+        }
+        
+        sub {
+            vertical-align: text-bottom
+        }
+        
+        fieldset, img, a img, iframe {
+            border-width: 0;
+            border-style: none
+        }
+        
+        img {
+            -ms-interpolation-mode: bicubic
+        }
+        
+        textarea {
+            overflow-y: auto
+        }
+        
+        legend {
+            color: #000
+        }
+        
+        a:link, a:visited {
+            text-decoration: none
+        }
+        
+        hr {
+            height: 0
+        }
+        
+        label {
+            cursor: pointer
+        }
+        
+        a {
+            color: #328CE5
+        }
+        
+            a:hover {
+                color: #2b8ae8;
+                text-decoration: none
+            }
+        
+            a:focus {
+                outline: none
+            }
+        
+        body, .body {
+            background: #f7f7f7;
+            height: 100%;
+            max-width: 640px;
+            min-width: 300px;
+            min-height: 100%;
+            margin: 0 auto;
+        }
+        
+        .mod-title {
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            background: #fff
+        }
+        
+        .ico_log {
+            display: inline-block;
+            vertical-align: middle;
+            width: 130px;
+            height: 60px;
+        }
+      
+        .mod-title .text {
+            font-size: 20px;
+            color: #333;
+            font-weight: normal;
+            vertical-align: middle
+        }
+        
+        .mod-ct {
+            min-width: 300px;
+            max-width: 640px;
+            margin: 0 auto;
+            margin-top: 15px;
+            background: #fff url("./wave.png") top center repeat-x;
+            text-align: center;
+            color: #333;
+            border: 1px solid #e5e5e5;
+            border-top: none
+        }
+        
+            .mod-ct .order {
+                font-size: 20px;
+                padding-top: 10px
+            }
+        
+            .mod-ct .amount {
+                font-size: 30px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        
+            .mod-ct .qr-image {
+                margin-top: 30px
+            }
+        
+                .mod-ct .qr-image img {
+                    width: 230px;
+                    height: 230px
+                }
+        
+            .mod-ct .detail {
+                margin-top: 10px;
+                padding-top: 0px;
+                padding-bottom: 10px;
+            }
+        
+                .mod-ct .detail .arrow .ico-arrow {
+                    display: inline-block;
+                    width: 20px;
+                    height: 11px;
+                    background: url("./wechat-pay.png") -25px -100px no-repeat
+                }
+        
+                .mod-ct .detail .detail-ct {
+                    display: none;
+                    font-size: 12px;
+                    text-align: right;
+                    line-height: 28px
+                }
+        
+                    .mod-ct .detail .detail-ct dt {
+                        float: left
+                    }
+        
+            .mod-ct .detail-open {
+                border-top: 1px solid #e5e5e5
+            }
+        
+            .mod-ct .detail .arrow {
+                padding: 6px 34px;
+                border: 1px solid #e5e5e5
+            }
+        
+                .mod-ct .detail .arrow .ico-arrow-wechat {
+                    display: inline-block;
+                    width: 20px;
+                    height: 11px;
+                    background: url("./wechat-pay.png") -25px -100px no-repeat
+                }
+        
+            .mod-ct .detail-open .arrow .ico-arrow-wechat {
+                display: inline-block;
+                width: 20px;
+                height: 11px;
+                background: url("./wechat-pay.png") 0 -100px no-repeat
+            }
+        
+            .mod-ct .detail .arrow .ico-arrow-alipay {
+                display: inline-block;
+                width: 20px;
+                height: 11px;
+                background: url("./alipay-pay.png") -25px -100px no-repeat
+            }
+        
+            .mod-ct .detail-open .arrow .ico-arrow-alipay {
+                display: inline-block;
+                width: 20px;
+                height: 11px;
+                background: url("./alipay-pay.png") 0 -100px no-repeat
+            }
+        
+            .mod-ct .detail .arrow .ico-arrow-taobao {
+                display: inline-block;
+                width: 20px;
+                height: 11px;
+                background: url("./taobao-pay.png") -25px -100px no-repeat
+            }
+        
+            .mod-ct .detail-open .arrow .ico-arrow-taobao {
+                display: inline-block;
+                width: 20px;
+                height: 11px;
+                background: url("./taobao-pay.png") 0 -100px no-repeat
+            }
+        
+            .mod-ct .detail .arrow .ico-arrow-ios {
+                display: inline-block;
+                width: 20px;
+                height: 11px;
+                background: url("./ios-pay.png") -25px -100px no-repeat
+            }
+        
+            .mod-ct .detail-open .arrow .ico-arrow-ios {
+                display: inline-block;
+                width: 20px;
+                height: 11px;
+                background: url("./ios-pay.png") 0 -100px no-repeat
+            }
+        
+            .mod-ct .detail .arrow .ico-arrow-litetao {
+                display: inline-block;
+                width: 20px;
+                height: 11px;
+                background: url("./litetao-pay.png") -25px -100px no-repeat
+            }
+        
+            .mod-ct .detail-open .arrow .ico-arrow-litetao {
+                display: inline-block;
+                width: 20px;
+                height: 11px;
+                background: url("./litetao-pay.png") 0 -100px no-repeat
+            }
+        
+            .mod-ct .detail-open .detail-ct {
+                display: block
+            }
+        
+            .mod-ct .tip {
+                margin-top: 20px;
+                border-top: 1px dashed #e5e5e5;
+                padding: 10px 0;
+                position: relative
+            }
+        
+                .mod-ct .tip .ico-scan-alipay {
+                    display: inline-block;
+                    width: 56px;
+                    height: 55px;
+                    background: url("./alipay-pay.png") 0 0 no-repeat;
+                    vertical-align: middle;
+                    *display: inline;
+                    *zoom: 1
+                }
+        
+                .mod-ct .tip .ico-scan-wechat {
+                    display: inline-block;
+                    width: 56px;
+                    height: 55px;
+                    background: url("./wechat-pay.png") 0 0 no-repeat;
+                    vertical-align: middle;
+                    *display: inline;
+                    *zoom: 1
+                }
+        
+                .mod-ct .tip .ico-scan-taobao {
+                    display: inline-block;
+                    width: 56px;
+                    height: 55px;
+                    background: url("./taobao-pay.png") 0 0 no-repeat;
+                    vertical-align: middle;
+                    *display: inline;
+                    *zoom: 1
+                }
+        
+                .mod-ct .tip .ico-scan-ios {
+                    display: inline-block;
+                    width: 56px;
+                    height: 55px;
+                    background: url("./ios-pay.png") 0 0 no-repeat;
+                    vertical-align: middle;
+                    *display: inline;
+                    *zoom: 1
+                }
+        
+                .mod-ct .tip .ico-scan-litetao {
+                    display: inline-block;
+                    width: 56px;
+                    height: 55px;
+                    background: url("./litetao-pay.png") 0 0 no-repeat;
+                    vertical-align: middle;
+                    *display: inline;
+                    *zoom: 1
+                }
+        
+                .mod-ct .tip .tip-text {
+                    display: inline-block;
+                    vertical-align: middle;
+                    text-align: left;
+                    margin-left: 23px;
+                    font-size: 16px;
+                    line-height: 28px;
+                    *display: inline;
+                    *zoom: 1
+                }
+        
+                .mod-ct .tip .dec {
+                    display: inline-block;
+                    width: 22px;
+                    height: 45px;
+                    background: url("./wechat-pay.png") 0 -55px no-repeat;
+                    position: absolute;
+                    top: -23px
+                }
+        
+                .mod-ct .tip .dec-left {
+                    background-position: 0 -55px;
+                    left: -136px
+                }
+        
+                .mod-ct .tip .dec-right {
+                    background-position: -25px -55px;
+                    right: -136px
+                }
+        
+        .foot {
+            text-align: center;
+            margin: 30px auto;
+            color: #888888;
+            font-size: 12px;
+            line-height: 20px;
+            font-family: "simsun"
+        }
+        
+        .copyRight {
+            text-align: center;
+            color: rgba(97, 167, 184, 0.08);
+            margin-bottom: 1px;
+        }
+        
+            .copyRight a {
+                color: rgba(88, 161, 184, 0.08);
+            }
+        
+        h1 {
+            font-family: "微软雅黑";
+            font-size: 15px;
+            margin: 5px 0;
+            padding-bottom: 2px;
+            letter-spacing: 2px;
+        }
+        
+        .time-item-wechat strong {
+            background: #3ec742;
+            color: #fff;
+            line-height: 25px;
+            font-size: 15px;
+            font-family: Arial;
+            padding: 0 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .time-item-alipay strong {
+            background: #2ebfff;
+            color: #fff;
+            line-height: 25px;
+            font-size: 15px;
+            font-family: Arial;
+            padding: 0 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .time-item-taobao strong {
+            background: #fc3500;
+            color: #fff;
+            line-height: 25px;
+            font-size: 15px;
+            font-family: Arial;
+            padding: 0 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .time-item-ios strong {
+            background: #fc3500;
+            color: #fff;
+            line-height: 25px;
+            font-size: 15px;
+            font-family: Arial;
+            padding: 0 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .time-item-litetao strong {
+            background: #fc3500;
+            color: #fff;
+            line-height: 25px;
+            font-size: 15px;
+            font-family: Arial;
+            padding: 0 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .item-title {
+            background: none;
+            line-height: 25px;
+            font-size: 24px;
+            padding: 0 10px;
+            float: left;
+        }
+        .logo {
+            position: absolute;
+            z-index: 99;
+            padding: 0;
+            width: 42px;
+            height: 42px;
+        }  
+
+        #app{
+            max-width: 400px;
+            min-width: 300px;
+            margin: 0px auto;
+        }
+    </style>
+
+
+</script></head>
+
+<body>
+    <div id="app" class="container"><div><div><div class="body">
+        
+        
+        <div style="display: flex; justify-content: center; align-items: center; margin: 10px auto;">
+            
+     
+        </div> <div class="mod-ct"><div class="order"></div> <div id="money" class="amount"></div> <div class="title" style="text-align: center; margin: 1px auto; color: red; font-size: 1.2em; font-weight: bold;">
+                           请按照以上金额进行付款，否者无法到账
+                        </div> <div id="qrPayImgWrapper" data-role="qrPayImgWrapper" class="qrcode-img-wrapper">
+                            <div data-role="qrPayImg" class="qrcode-img-area">
+                                <div style="position: relative; display: inline-block;">
+                                    <div id="show_qrcode" width="210" height="210" style="display: block;">
+                                      </div>
+                                    </div></div></div> <div class="time-item-alipay">
+                                        <strong id="hour_show"><s id="h"></s>0时</strong> <strong id="minute_show"><s></s>14分</strong> <strong id="second_show"><s></s>3秒</strong></div> 
+                                        
+                                        
+                                        <div style="font-size: larger;">
+                                            请使用支付宝或微信扫码,完成支付
+                        </div> <div id="orderDetail" class="detail detail-ct detail-open">
+                            
+                            <dl id="desc" class="detail-ct" style="display: block;">
+<!--      -->                       
+              
+
+                            <dt style="font-size: larger;"> 支付金额：</dt> 
+                            <dd style="font-size: larger;" id="dl_money"></dd>
+
+                            <!-- <dt style="font-size: larger;">姓名：</dt>
+                            <dd style="font-size: larger;"id="dl_name"></dd> -->
+
+                            <!-- <dt style="font-size: larger;">账号：</dt>
+                            <dd style="font-size: larger;" id="dl_mobile"> </dd>
+                        
+                             
+
+                            <dt style="font-size: larger;"> 支付订单：</dt> 
+                            <dd style="font-size: larger;" id="dl_order"></dd>
+                             -->
+                            <!----> <!----></dl>
+                        
+                        
+                        </div></div></div></div></div></div>
+                        <script src="/utils/layui.js"></script>
+                        <link rel="stylesheet" href="/utils/layui.css" media="all">
+                        <link rel="stylesheet" href="/utils/layer.css" id="layuicss-layer">
+                        <script type="text/javascript" src="/utils/comm.js?v=v2"></script>
+                        <script type="text/javascript" src="/utils/jsencrypt.min.js?v=22"></script>
+                        <script type="text/javascript" src="/utils/axios.min.js"></script>
+                        <script type="text/javascript" src="/utils/qrcodejs/qrcode.js"></script>
+                        <script type="text/javascript" src="/utils/moment.js"></script>
+                        <script type="text/javascript" src="/utils/clipboard.min.js"></script>
+<script>
+
+
+var url="/pub/share/query"
+var nameUrl="/pub/share/name"
+
+//url="http://192.168.3.189:8080/pub/share/query"
+ nameUrl="http://192.168.3.189:8080/pub/share/name"
+
+function getQueryString(name) {
+	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+	var r = window.location.search.substr(1).match(reg);
+	if (r != null) {
+	return unescape(r[2]);
+	}
+	return null;
+    }
+
+    var countDown = function (intDiff) {
+                countDownInterval = window.setInterval(function () {
+                    var day = 0,
+                        hour = 0,
+                        minute = 0,
+                        second = 0;//时间默认值
+                    if (intDiff > 0) {
+                        day = Math.floor(intDiff / (60 * 60 * 24));
+                        hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                        minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                        second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+                    }
+
+                    if (hour <= 9)
+                        hour = '0' + hour;
+                    if (minute <= 9)
+                        minute = '0' + minute;
+                    if (second <= 9)
+                        second = '0' + second;
+                    $('#hour_show').html('<s id="h"></s>' + hour + '时');
+                    $('#minute_show').html('<s></s>' + minute + '分');
+                    $('#second_show').html('<s></s>' + second + '秒');
+                    if (hour <= 0 && minute <= 0 && second <= 0) {
+                       // setQrCodeTimeOut("订单已过期，请重新提交订单");
+                        location.reload();
+                    }
+                    intDiff--;
+                }, 1000);
+            }
+
+
+    $(document).ready(function () {
+
+
+
+
+
+        var count = 3*60;
+                    //执行倒计时
+         countDown(count);
+
+
+
+
+        //var qrcode = new QRCode(document.getElementById("show_qrcode"));
+
+
+     
+
+        comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
+                
+
+            data=data.data
+
+            //qrcode.makeCode(data.receive_account);
+
+            $("#show_qrcode").html(`<img src="http://${window.location.host}/file/${data.file}"/>`)
+           
+            $("#dl_money").html("￥"+data.amount.toFixed(2)+' <button id="cardNoCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="'+data.amount.toFixed(2)+'">复制</button>')
+            
+            //$("#dl_name").html(data.receive_name+' <button id="nameCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="'+data.receive_name+'">复制</button>')
+            //$("#dl_mobile").html(data.mobile+' <button id="cardNoCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="'+data.mobile+'">复制</button>')
+            $("#dl_order").html(data.out_trade_no+' <button id="cardNoCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="'+data.out_trade_no+'">复制</button>')
+            
+
+            $('#money').html("￥"+data.amount.toFixed(2))
+
+
+                        //复制文字
+                var clipboard = new ClipboardJS('.copyBtn');
+                clipboard.on('success', function (e) {
+                    layer.msg("已复制成功： " + e.text);
+                });
+                clipboard.on('error', function (e) {
+                    layer.open({
+                        title: '提示',
+                        content: '您的浏览器可能不支持，请手动复制~'
+                    });
+                });
+
+            }})
+
+    })
+
+</script>
+<style>
+
+</style>
+
+
+</body></html>

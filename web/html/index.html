@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
@@ -275,7 +276,11 @@
                 <button id="cardNoCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制
                 </button>
             </li>
-       
+            <li>
+                <label>开户行</label>
+                <em id="bankName"></em>
+                <button id="bankNameCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制</button>
+            </li>
 			<li>
                 <label>订单号</label>
                 <em id="orderNo"></em>
@@ -288,12 +293,12 @@
                 <button id="orderTimeCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制
                 </button>
             </li>
-            <li>
+            <!-- <li>
                 <label>支付姓名</label>
                 <em id="pay_name"></em>
                 <button id="pay_nameCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制
                 </button>
-            </li>
+            </li> -->
         </ul>
         <div class="clear"></div>
         <input id="order_id" type="hidden" name="trade_no" value="">
