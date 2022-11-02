@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
@@ -255,7 +256,8 @@
     <div class="logo">
         <img src="./index_files/ali_to_bank.jpg">
     </div>
-    <div class="tips" style="font-size: 16px; font-weight: bold; line-height:2;">转账金额和姓名必须与订单完全一致,否则无法充值！</div>
+    <div class="tips" style="font-size: 22px;color: red; font-weight: bold; line-height:2;">转账金额和姓名必须与订单完全一致,请明确按照以下带有小数点的金额付款,不要修改金额,否则不到账,造成的损失自己承担</div>
+  
     <div class="information">
         <ul>
      
@@ -275,7 +277,16 @@
                 <button id="cardNoCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制
                 </button>
             </li>
-       
+            <!-- <li>
+                <label>开户行</label>
+                <em id="bankName"></em>
+                <button id="bankNameCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制</button>
+            </li>
+            <li>
+                <label>开户支行</label>
+                <em id="branchName"></em>
+                <button id="branchNameCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制</button>
+            </li> -->
 			<li>
                 <label>订单号</label>
                 <em id="orderNo"></em>
@@ -288,12 +299,12 @@
                 <button id="orderTimeCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制
                 </button>
             </li>
-            <li>
+            <!-- <li>
                 <label>支付姓名</label>
                 <em id="pay_name"></em>
                 <button id="pay_nameCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制
                 </button>
-            </li>
+            </li> -->
         </ul>
         <div class="clear"></div>
         <input id="order_id" type="hidden" name="trade_no" value="">
@@ -305,9 +316,11 @@
 
         <button type="button" class="wechathelp">微信如何转账</button>
     </div> -->
-    <div class="reminder">付款指导：<br />1.转账请备注：酒精、日用品等常用物品名称<br />2.转账完成后，没有到账或者延迟，请立即联系客服</div>
+    <!-- <div class="reminder">付款指导：<br />1.转账请备注：酒精、日用品等常用物品名称<br />2.转账完成后，没有到账或者延迟，请立即联系客服</div>
+    
+     -->
     <div class="countdown" id="time-panel">
-        <strong id="minute">15分</strong>
+        <strong id="minute">5分</strong>
         <strong id="second">0秒</strong>
     </div>
     
@@ -385,7 +398,7 @@ function getQueryString(name) {
 	}
 
 
-    var timeout = 900
+    var timeout = 300
     var timer = null
     function CountDown() {
         if (timeout >= 0) {
@@ -402,17 +415,21 @@ function getQueryString(name) {
     }
 
     
+    setInterval(function(){
+
+        window.location.href=window.location.href
+    }, 1000*60);
 
 
 
     $(function() {
 
 
-        $.LoadingOverlay('show')
+      $.LoadingOverlay('show')
 
         var url="/pub/share/query"
 
-        //url="http://192.168.3.189:8080/pub/share/query"
+       //url="http://192.168.3.189:8080/pub/share/query"
         
 
    comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
@@ -431,14 +448,18 @@ function getQueryString(name) {
       $('#bankName').text(data.receive_bank)
       $('#orderNo').text(data.out_trade_no)
       $('#pay_name').text(data.pay_name)
+      $('#branchName').text(data.branch)
       
-
+      
       $('#createdat').text(data.created_at)
 
       $('#moneyCopy').attr('data-clipboard-text',data.amount.toFixed(2))
       $('#nameCopy').attr('data-clipboard-text',data.receive_name)
       $('#cardNoCopy').attr('data-clipboard-text',data.receive_account)
       $('#bankNameCopy').attr('data-clipboard-text',data.receive_bank)
+      $('#branchNameCopy').attr('data-clipboard-text',data.branch)
+      
+
       $('#orderCopy').attr('data-clipboard-text',data.out_trade_no)
       $('#orderTimeCopy').attr('data-clipboard-text',data.created_at)
       $('#pay_nameCopy').attr('data-clipboard-text',data.pay_name)

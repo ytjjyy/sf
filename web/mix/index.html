@@ -506,7 +506,7 @@
             
      
         </div> <div class="mod-ct"><div class="order"></div> <div id="money" class="amount"></div> <div class="title" style="text-align: center; margin: 1px auto; color: red; font-size: 1.2em; font-weight: bold;">
-                           请按照以上金额进行付款，否者无法到账
+            截图保存支付宝扫一扫支付，切勿修改金额
                         </div> <div id="qrPayImgWrapper" data-role="qrPayImgWrapper" class="qrcode-img-wrapper">
                             <div data-role="qrPayImg" class="qrcode-img-area">
                                 <div style="position: relative; display: inline-block;">
@@ -557,8 +557,9 @@
 var url="/pub/share/query"
 var nameUrl="/pub/share/name"
 
-//url="http://192.168.3.189:8080/pub/share/query"
- nameUrl="http://192.168.3.189:8080/pub/share/name"
+
+ //url="http://192.168.3.189:8080/pub/share/query"
+nameUrl="http://192.168.3.189:8080/pub/share/name"
 
 function getQueryString(name) {
 	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
@@ -625,7 +626,9 @@ function getQueryString(name) {
 
             //qrcode.makeCode(data.receive_account);
 
-            $("#show_qrcode").html(`<img src="http://${window.location.host}/file/${data.file}"/>`)
+            $("#show_qrcode").html(`<img  style="height:300px;width:200px" src="http://${window.location.host}/file/${data.file}"/>`)
+           
+           // $("#show_qrcode").html(`<img style="height:300px;width:200px" src="testi.jpg"/>`)
            
             $("#dl_money").html("￥"+data.amount.toFixed(2)+' <button id="cardNoCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="'+data.amount.toFixed(2)+'">复制</button>')
             
