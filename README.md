@@ -1,7 +1,7 @@
-# 蚂蚁跑分系统（代收代付）🐜🐜🐜
-蚂蚁跑分系统（代收代付）🐜🐜🐜,支持:银行卡、支宝转账、支付宝手表零钱、支付宝口令红包、USTD TRC20（自动转账）、50家短信银行回调，三方、四方集成系统
+# NASA分系统（代收代付）
+NASA分系统（代收代付）卡卡、支宝转账(uid)、USTD TRC20（自动转账）、银行短信回调，三方、四方集成系统
 # 系统功能
-	1.国内银行: 农业银行、工商银行、邮政银行、招商银行、平安银行、交通银行、兴业银行、平安银行、浦发银行自动收款回调，自动转账，50家短信银行回调
+	1.国内银行: 支持国内所有银行短信回调（卡卡）
 	2.印度银行: PayTM自动转账、自动收款回调 云手机
 	3.越南银行: TCB,ACB,VTB,Bidv,TBP 云手机
 	4.挂码模块: 支付宝、USTD TRC20（自动转账）、微信
@@ -40,10 +40,7 @@ https://user-images.githubusercontent.com/12911640/147375941-6f0c8c70-1a0f-4278-
 越南TCB:
 
 https://user-images.githubusercontent.com/12911640/147103583-061309dc-460f-4fbc-96f2-a561e710f8c7.MOV
-# 转账App截图
-![image](https://github.com/1752325542/daifu/blob/master/doc/1x.png)
-![image](https://github.com/1752325542/daifu/blob/master/doc/2x.png)
-	
+
 # 系统截图
 ![image](https://github.com/1752325542/daifu/blob/master/doc/1.png)
 ![image](https://github.com/1752325542/daifu/blob/master/doc/9.png)
